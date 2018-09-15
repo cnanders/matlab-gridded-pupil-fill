@@ -6,8 +6,6 @@ xOut = xIn(1);
 yOut = yIn(1);
 iOut = iIn(1);
 
-pointsAllowed = ones(size(xIn));
-pointsAllowed(1) = 0;
 
 xIn(1) = [];
 yIn(1) = [];

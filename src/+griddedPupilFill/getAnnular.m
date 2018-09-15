@@ -11,9 +11,10 @@ y = linspace(-1, 1, numOfSamples);
 index = sqrt(x.^2 + y.^2) >= r1 & ...
         sqrt(x.^2 + y.^2) <= r2;
 
-xOut = x(index);
-yOut = y(index);
-iOut = ones(size(xOut));
+% Return {double 1xm} ROW
+xOut = x(index)';
+yOut = y(index)';
+iOut = ones(size(xOut))';
 
 
 

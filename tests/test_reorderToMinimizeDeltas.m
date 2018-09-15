@@ -95,5 +95,58 @@ title('x(t) vs. y(t)');
 
 
 
+%%
+
+
+
+[xOut, yOut, iOut] = getAnnular(0.35, 0.6, 30);
+
+figure
+subplot(131)
+plot(xOut, '.-')
+ylim([-1 1])
+subplot(132)
+plot(yOut, '.-')
+ylim([-1 1])
+subplot(133)
+plot(xOut, yOut, 'o-')
+title('scan path')
+xlim([-1 1])
+ylim([-1 1])
+
+% Randomly re-arrange to make reordering as hard as possible
+index = randperm(length(xOut));
+
+figure('Name', 'Random arrangement sent to reorder function');
+plot(xOut(index), yOut(index), 'o-')
+xlim([-1 1])
+ylim([-1 1])
+
+
+[xOut, yOut, iOut] = reorderToMinimizeDeltas(...
+    xOut(index), ...
+    yOut(index), ...
+    iOut(index) ...
+);
+
+figure('Name', 'Reordering of randomized arrangement')
+subplot(131)
+plot(xOut, '.-')
+ylim([-1 1])
+subplot(132)
+plot(yOut, '.-')
+ylim([-1 1])
+subplot(133)
+plot(xOut, yOut, 'o-')
+xlim([-1 1])
+ylim([-1 1])
+
+
+figure('Name', 'Reordering of randomized arrangement')
+plot3(xOut, yOut, [1 : length(yOut)], '.-')
+xlim([-1 1])
+ylim([-1 1])
+
+
 
 
