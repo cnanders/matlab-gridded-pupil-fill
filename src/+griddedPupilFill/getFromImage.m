@@ -15,9 +15,17 @@ F = griddedInterpolant(double(a));
 xq = (0:numX/numOfSamples:numX)';
 yq = (0:numY/numOfSamples:numY)';
 zq = (1:numZ)';
-vq = uint8(F({xq,yq,zq}));
 
-a = double(rgb2gray(vq));
+if length(zq) == 1
+    vq = uint8(F({xq,yq}));
+    a = double(vq);
+else
+    vq = uint8(F({xq,yq,zq}));
+    a = double(rgb2gray(vq));
+end
+
+
+
 a = a./max(max(a));
 
 % square sampling grid
