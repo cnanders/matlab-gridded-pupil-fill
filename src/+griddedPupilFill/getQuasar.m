@@ -12,7 +12,7 @@ addParameter(p, 'radiusPoleInner', 0.5, @(x) isscalar(x) && isnumeric(x) && (x >
 addParameter(p, 'radiusPoleOuter', 0.7, @(x) isscalar(x) && isnumeric(x) && (x > 0) && (x <= 1))
 addParameter(p, 'numPoles', 4, @(x) isscalar(x) && isinteger(x) && (x > 0))
 addParameter(p, 'thetaPole', 30, @(x) isscalar(x) && isnumeric(x) && (x > 0))
-addParameter(p, 'numOfSamples', 80, @(x) isscalar(x) && isnumeric(x) && (x > 0))
+addParameter(p, 'numSamples', 80, @(x) isscalar(x) && isnumeric(x) && (x > 0))
 
 parse(p, varargin{:});
 
@@ -20,13 +20,13 @@ radiusPoleInner = p.Results.radiusPoleInner;
 radiusPoleOuter = p.Results.radiusPoleOuter;
 numPoles = double(p.Results.numPoles);
 thetaPole = p.Results.thetaPole;
-numOfSamples = p.Results.numOfSamples;
+numSamples = p.Results.numSamples;
     
 import griddedPupilFill.*
 
 % square sampling grid
-x = linspace(-1, 1, numOfSamples);
-y = linspace(-1, 1, numOfSamples);
+x = linspace(-1, 1, numSamples);
+y = linspace(-1, 1, numSamples);
 [x, y] = meshgrid(x, y);
 
 [theta2, rho2] = cart2pol(x, y);
