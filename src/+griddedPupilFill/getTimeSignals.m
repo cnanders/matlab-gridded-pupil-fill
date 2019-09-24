@@ -68,6 +68,26 @@ for n = 1 : length(int)
     yOut = [yOut ones(1, samples) * y(n)];
 end
 
+
+% Check for transition between end and beginning
+sigOfStep = sqrt((xOut(1) - xOut(end)).^2 + (yOut(1) - yOut(end)).^2);
+
+if sigOfStep >= sigOfStepThatRequiresTransition
+
+    timeOfTransition = sigOfStep / velocityOfTransition;
+    samplesOfTransition =  timeOfTransition / dt;
+    xOut = [xOut linspace(xOut(end), xOut(1), samplesOfTransition)];
+    yOut = [yOut linspace(yOut(end), yOut(1), samplesOfTransition)];
+
+    lDebug & fprintf('getTimeSignals() creating a transition of %1.0f samples (%1.0f us) for jump of %1.2f sigma (> %1.1f sigma threshold)\n', ...
+        samplesOfTransition, ...
+        timeOfTransition * 1e6, ...
+        sigOfStep, ...
+        sigOfStepThatRequiresTransition ...
+    );
+end
+        
+
 tOut = [0 : dt: (length(xOut) - 1) * dt];
 
 
