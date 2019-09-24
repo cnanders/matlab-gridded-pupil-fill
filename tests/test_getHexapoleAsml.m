@@ -7,7 +7,7 @@ addpath(cPath);
 import griddedPupilFill.*
 
 
-[xOut, yOut, iOut] = getHexapoleAsml(1.5, 30, 80);
+[xOut, yOut, iOut] = getHexapoleAsml(0.8, 30, 80);
 
 figure
 subplot(131)
