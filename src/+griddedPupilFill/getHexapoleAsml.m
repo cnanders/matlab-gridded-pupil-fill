@@ -14,7 +14,7 @@ addParameter(p, 'sigmaOfCenterOfOuterRings', 1.17, @(x) isscalar(x) && isnumeric
 % sigma of each outer ring
 addParameter(p, 'sigmaOfOuterRings', 0.75, @(x) isscalar(x) && isnumeric(x) && (x > 0) && (x <= 1))
 % global rotation
-addParameter(p, 'rotation', 0, @(x) isscalar(x) && isnumeric(x) && (x > 0))
+addParameter(p, 'rotation', 0, @(x) isscalar(x) && isnumeric(x) && (x >= 0))
 % samples in pupil (1D)
 addParameter(p, 'numOfSamples', 80, @(x) isscalar(x) && isnumeric(x) && (x > 0))
 
