@@ -2,6 +2,13 @@
 
 function [xOut, yOut, iOut] = reorderToMinimizeDeltas(xIn, yIn, iIn)
 
+if isrow(xIn)
+    xIn = xIn'
+    yIn = yIn'
+    iIn = iIn'
+end
+
+
 xOut = xIn(1);
 yOut = yIn(1);
 iOut = iIn(1);
@@ -13,8 +20,8 @@ iIn(1) = [];
 
 while length(iIn) > 0
     
-    % Create vector [x, y] for all next possible points to last point
-    vectors = [xIn' - xOut(end) yIn' - yOut(end)];
+    % Create {nx2} matrix [x, y] for all next possible points to last point
+    vectors = [xIn - xOut(end) yIn - yOut(end)];
     
     distances = sqrt(vectors(:,1).^2 + vectors(:,2).^2);
     
