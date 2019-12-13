@@ -9,7 +9,7 @@ if isrow(xIn)
     iIn = iIn';
 end
 
-lTravelingSalesman = true;
+lTravelingSalesman = false;
 
 if lTravelingSalesman
     positions(:, 1) = xIn;
