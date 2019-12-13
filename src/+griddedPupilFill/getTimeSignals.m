@@ -44,7 +44,10 @@ lDebug = true;
 for n = 1 : length(int)
     samples = round(int(n) * timeSamplesPerIntensity);
     
-    if (n > 1)
+    if (n > 1 && ...
+        ~isempty(xOut) && ...
+        ~isempty(yOut) > 0 ...
+       )
         % Check for transition
         sigOfStep = sqrt((x(n) - xOut(end)).^2 + (y(n) - yOut(end)).^2);
 
@@ -64,8 +67,10 @@ for n = 1 : length(int)
         end
     end
     
-    xOut = [xOut ones(1, samples) * x(n)];
-    yOut = [yOut ones(1, samples) * y(n)];
+    if samples > 0
+        xOut = [xOut ones(1, samples) * x(n)];
+        yOut = [yOut ones(1, samples) * y(n)];
+    end
 end
 
 
