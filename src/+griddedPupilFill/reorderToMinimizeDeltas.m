@@ -2,17 +2,33 @@
 
 function [xOut, yOut, iOut] = reorderToMinimizeDeltas(xIn, yIn, iIn)
 
+
 if isrow(xIn)
     xIn = xIn';
     yIn = yIn';
     iIn = iIn';
 end
 
+lTravelingSalesman = false;
+
+if lTravelingSalesman
+    positions(:, 1) = xIn;
+    positions(:, 2) = yIn;
+
+    [idxTour, lengthTour] = tsp(positions);
+
+    xOut = xIn(idxTour);
+    yOut = yIn(idxTour);
+    iOut = iIn(idxTour);
+
+
+    return
+end
+
 
 xOut = xIn(1);
 yOut = yIn(1);
 iOut = iIn(1);
-
 
 xIn(1) = [];
 yIn(1) = [];
@@ -49,7 +65,7 @@ while length(iIn) > 0
         % scale by the minimum of discances and add to distance before
         % sorting
         
-        distances = distances + angleOfDirectionChange / 180 * min(distances) ;
+        distances = distances + angleOfDirectionChange / 180 * min(distances) * 0.5 ;
         
         
     end

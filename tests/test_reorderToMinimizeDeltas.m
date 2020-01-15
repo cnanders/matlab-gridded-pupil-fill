@@ -4,7 +4,7 @@ close all
 
 [cDirThis, cName, cExt] = fileparts(mfilename('fullpath'));
 cPath = fullfile(cDirThis, '..', 'src');
-addpath(cPath);
+addpath(genpath(cPath));
 import griddedPupilFill.*
 
 % x = [3 10 1 10 3 1 9 8 3];
@@ -21,7 +21,7 @@ import griddedPupilFill.*
 % plot(xOut, yOut, 'o-')
 % title('scan path')
 
-[xOut, yOut, iOut] = getDipoleAsml(1.7, 0, 80);
+[xOut, yOut, iOut] = getDipoleAsml(1.7, 0, 50);
 
 figure
 subplot(131)
@@ -59,9 +59,10 @@ subplot(132)
 plot(yOut, '.-')
 ylim([-1 1])
 subplot(133)
-plot(xOut, yOut, 'o-')
+plot(xOut, yOut, '.-')
 xlim([-1 1])
 ylim([-1 1])
+
 
 
 figure('Name', 'Reordering of randomized arrangement')
