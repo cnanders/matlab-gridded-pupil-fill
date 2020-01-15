@@ -3,9 +3,9 @@
 function [xOut, yOut, iOut] = reorderToMinimizeDeltas(xIn, yIn, iIn)
 
 if isrow(xIn)
-    xIn = xIn'
-    yIn = yIn'
-    iIn = iIn'
+    xIn = xIn';
+    yIn = yIn';
+    iIn = iIn';
 end
 
 
